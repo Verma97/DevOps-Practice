@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the source code from the Git repository
-                git 'your_git_repository_url'
+                git 'https://github.com/Verma97/DevOps-Practice.git'
             }
         }
 
@@ -26,16 +26,16 @@ pipeline {
         stage('Deploy') {
             environment {
                 // Set environment variables for your deployment
-                SERVER_USERNAME = 'your_server_username'
-                SERVER_IP = 'your_server_ip'
-                DEPLOY_PATH = '/path/to/deploy'
+                SERVER_USERNAME = 'ec2-user'
+                SERVER_IP = '54.205.111.249'
+                DEPLOY_PATH = '/home/ec2-user/Project'
             }
             steps {
                 // Assuming you have a target server where you want to deploy the application
                 // Replace 'your_server_username', 'your_server_ip', and '/path/to/deploy' with actual values
                 // For simplicity, we'll use SSH to copy the JAR file to the server
-                sh "ssh ${SERVER_USERNAME}@${SERVER_IP} 'mkdir -p ${DEPLOY_PATH}'"
-                sh "scp target/hello-world.jar ${SERVER_USERNAME}@${SERVER_IP}:${DEPLOY_PATH}"
+                sh "ssh ${ec2-user}@${54.205.111.249} 'mkdir -p ${/home/ec2-user/Project}'"
+                sh "scp target/hello-world.jar ${ec2-user}@${54.205.111.249}:${/home/ec2-user/Project}"
             }
         }
     }
